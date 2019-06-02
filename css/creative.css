@@ -6916,7 +6916,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #f4623a !important;
+  background-color: blue !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -10754,4 +10754,15 @@ header.masthead h1 {
 
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
+}
+#sobre{
+  background-image: url("../img/bg-developers.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+#caixaSobre{
+  border-radius: 30px;
+  box-shadow: 0 0 10px white;
 }
