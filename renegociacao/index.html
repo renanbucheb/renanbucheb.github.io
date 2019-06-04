@@ -1,0 +1,271 @@
+<html ng-app="clienteApp">
+
+
+<!-- <!DOCTYPE html> -->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"> -->
+
+<head>
+<meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport" />
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+<meta content="no-cache" http-equiv="Pragma" />
+<meta content="0" http-equiv="Expires" />
+
+<base href="/negociar/" />
+
+<link rel="stylesheet" href="/negociar/resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/negociar/resources/css/bootstrap-extend.css" />
+<link rel="stylesheet" href="/negociar/resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/negociar/resources/css/angular-motion.css" />
+<link rel="stylesheet" href="/negociar/resources/css/fonts.css" />
+<link rel="stylesheet" href="/negociar/resources/css/styles-1.css" />
+<link rel="stylesheet" href="/negociar/resources/css/icomoon.min.css" />
+
+<!-- 	<script th:src="@{/resources/modulos/diretivas/diretivas.js}"></script> -->
+
+<title>Negociar Dívida Online - SPC Brasil</title>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-119539147-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-119539147-4');
+	</script>
+
+
+
+</head><body>
+
+   			    <div class="box-loader" data-loading="">
+			        <div class="loader">
+			            <div class="circle" id="circle_rotate_01"></div>
+			            <div class="circle" id="circle_rotate_02"></div>
+			            <div class="circle" id="circle_rotate_03"></div>
+			            <div class="circle" id="circle_rotate_04"></div>
+			            <div class="circle" id="circle_rotate_05"></div>
+			            <div class="circle" id="circle_rotate_06"></div>
+			            <div class="circle" id="circle_rotate_07"></div>
+			            <div class="circle" id="circle_rotate_08"></div>
+			        </div>
+			    </div>
+
+
+	<header ng-controller="rpcCtrl">
+
+	    <div class="logo-container">
+   			<img alt="" height="60px" src="image/logo.png" />
+			<button class="btn-quero-negociar logout-button" ng-click="logout()" ng-hide="!usuarioLogado"><span class="ico icon-exit"></span>Sair</button>
+ 		</div>
+
+	    <nav class="menu" ng-show="usuarioLogado">
+	      <div class="container" ng-hide="isTermoAceite()">
+	        <div class="col-xs-3"><span class="ico icon-home hidden-xs"></span> <a ng-href="negociacao">Início</a></div>
+	        <div class="col-xs-3"><span class="ico icon-coin-dollar hidden-xs"></span><a ng-href="minhasnegociacoes">Negociações</a></div>
+ 	        <div class="col-xs-3" ng-hide="informacoesUsuario.cnpj"><span class="ico icon-logospc hidden-xs"></span> <a ng-href="autoconsulta">Autoconsulta</a></div>
+	        <div class="col-xs-3"><span class="ico icon-user hidden-xs"></span> <a ng-href="dadoscadastrais">Perfil</a></div>
+	      </div>
+	    </nav>
+
+		<!--/. close: logotipo/login  -->
+
+		<div class="container navPortal" ng-hide="usuarioLogado">
+			<div class="col-lg-12" ng-controller="navBarPortal">
+				<div class="row">
+					<nav class="navbar navbar-default" data-bs-collapse="" data-role="navigation" start-collapsed="true">
+						<div class="navbar-header">
+							<button bs-collapse-toggle="" class="navbar-toggle collapsed" type="button">
+								<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="collapse navbar-collapse am-collapse" data-bs-collapse-target="">
+							<ul class="nav navbar-nav">
+								<li><a href="/negociar/quemsomos">quem somos<hr /></a></li>
+								<li aria-expanded="false" bs-dropdown="dropdownHtml" class="dropdown" container="body" data-animation="am-flip-x" id="subMenu">
+									<a class="dropdown-toggle" href="#" id="tst-dropdown-session">como
+										funciona <i class="caret-drop fa fa-chevron-down hidden-lg hidden-md hidden-sm"></i>
+								   </a>
+								</li>
+								<li><a href="/negociar/duvidasfrequentes">dúvidas
+										frequentes<hr /></a></li>
+								<li><a href="/negociar/faleconosco">fale conosco</a></li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+		<!--/. close: navbar -->
+
+	</header>
+	<!--/. close: header -->
+
+	<div ng-view=""></div>
+
+	<footer>
+
+		<div class="container" ng-controller="rpcCtrl">
+			<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 box-footer" ng-hide="usuarioLogado">
+				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 item-footer item-footer-border">
+					<h1>MAPA DO SITE</h1>
+					<ul>
+						<li><a alt="Quem Somos" href="quemsomos" title="Quem Somos">Quem Somos</a></li>
+						<li><a alt="Quero ficar em dia" href="#" ng-click="showModalLogin()" title="Quero ficar em dia">Quero ficar em dia</a></li>
+						<li><a alt="Quero cobrar inadimplentes" href="querocobrarinadimplentes" title="Quero cobrar inadimplentes">Quero cobrar inadimplentes</a></li>
+						<li><a alt="Dúvidas frequentes" href="duvidasfrequentes" title="Dúvidas frequentes">Dúvidas frequentes</a></li>
+						<li><a alt="Fale Conosco" href="faleconosco" title="Fale Conosco">Fale Conosco</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 item-footer item-footer-border">
+					<h1>CONSUMIDORES</h1>
+					<ul>
+						<li><a alt="SPC Avisa - monitore seu CPF" href="//loja.spcbrasil.org.br/pessoa-fisica/spc-avisa.html" target="_blank" title="SPC Avisa - monitore seu CPF">SPC Avisa - monitore seu CPF</a></li>
+						<li><a alt="Cadastro Positivo - faça o seu!" href="//www.spcbrasil.org.br/cadastropositivo" target="_blank" title="Cadastro Positivo - faça o seu!">Cadastro Positivo - faça o seu!</a></li>
+						<li><a alt="Meu Bolso Feliz - Educação Financeira" href="//meubolsofeliz.com.br" target="_blank" title="Meu Bolso Feliz - Educação Financeira">Meu Bolso Feliz - Educação Financeira</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 item-footer">
+					<h1>EMPRESAS</h1>
+					<ul>
+						<li><a alt="Nossa Soluções" href="//www.spcbrasil.org.br/produtos" target="_blank" title="Nossa Soluções">Nossa Soluções</a></li>
+						<li><a alt="Quero ser um associado" href="//servicos.spc.org.br/filiacao/pages/associado.jsf" target="_blank" title="Quero ser um associado">Quero ser um associado</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--/. close items footer -->
+
+		<div class="col-lg-12 selo-sistema-cndl">
+			<img alt="Selo Sistema CNDL" title="Selo Sistema CNDL" src="image/selo_spc_sistema_cndl.png" />
+		</div>
+
+		<!--/. close: selo -->
+
+		<div class="col-lg-12 footer-copyright">
+			<p>Todos os direitos reservados a Negociar Dívida Online e SPC Brasil.</p>
+		</div>
+		<!--/. close message -->
+
+	</footer>
+
+	<!-- 				<div class="container alert alert-success" ng-show="showSuccessMessage"> -->
+	<!-- 					<strong>{{message}}</strong> -->
+	<!-- 				</div> -->
+	<!-- 				<div class="container alert alert-danger" ng-show="showErrorMessage"> -->
+	<!-- 					<strong>{{message}}</strong> -->
+	<!-- 				</div> -->
+
+
+
+	<script src="/negociar/resources/angular/angular.min.js"></script>
+	<script src="/negociar/resources/angular/angular-animate.min.js"></script>
+	<script src="/negociar/resources/angular/angular-touch.min.js"></script>
+	<script src="/negociar/resources/angular/angular-sanitize.min.js"></script>
+	<script src="/negociar/resources/angular/angular-resource.min.js"></script>
+	<script src="/negociar/resources/angular/angular-cookies.min.js"></script>
+	<script src="/negociar/resources/angular/angular-route.min.js"></script>
+	<script src="/negociar/resources/angular/angular-locale_pt-br.js"></script>
+	<script src="/negociar/resources/angular/ngStorage.min.js"></script>
+	<script src="/negociar/resources/angular/angular-jwt.js"></script>
+	<script src="/negociar/resources/angularstrap/angular-strap.min.js"></script>
+	<script src="/negociar/resources/angularstrap/angular-strap.tpl.js"></script>
+	<script src="/negociar/resources/angular/angular-input-masks-standalone.min.js"></script>
+	<script src="/negociar/resources/modulos/main/main.js"></script>
+	<script src="/negociar/resources/modulos/diretivas/diretivas.js"></script>
+	<script src="/negociar/resources/modulos/interceptor/http-interceptor-service.js"></script>
+	<script src="/negociar/resources/modulos/meio-comunicacao/meiocomunicacao_service.js"></script>
+	<script src="/negociar/resources/modulos/meio-comunicacao/meiocomunicacao.js"></script>
+	<script src="/negociar/resources/modulos/primeiro-acesso/primeiroacesso_service.js"></script>
+	<script src="/negociar/resources/modulos/primeiro-acesso/primeiroacesso.js"></script>
+	<script src="/negociar/resources/modulos/negociacao/modal-negociacao-controller.js"></script>
+	<script src="/negociar/resources/modulos/negociacao/negociacao-controller.js"></script>
+	<script src="/negociar/resources/modulos/negociacao/negociacao-service.js"></script>
+	<script src="/negociar/resources/modulos/cadastro-senha/cadastrosenha_service.js"></script>
+	<script src="/negociar/resources/modulos/cadastro-senha/cadastrosenha.js"></script>
+	<script src="/negociar/resources/modulos/aceite-termos/aceitetermos.js"></script>
+	<script src="/negociar/resources/modulos/login/login-service.js"></script>
+	<script src="/negociar/resources/modulos/modal/modal-service.js"></script>
+	<script src="/negociar/resources/modulos/fale-conosco/fale-conosco-service.js"></script>
+	<script src="/negociar/resources/modulos/fale-conosco/fale-conosco-controller.js"></script>
+	<script src="/negociar/resources/modulos/reset-senha/reset-senha.js"></script>
+	<script src="/negociar/resources/modulos/reset-senha/reset-senha-service.js"></script>
+	<script src="/negociar/resources/modulos/dados-cadastrais/dados-cadastrais-service.js"></script>
+	<script src="/negociar/resources/modulos/dados-cadastrais/dados-cadastrais-controller.js"></script>
+	<script src="/negociar/resources/modulos/boleto-cobranca/boleto-cobranca-service.js"></script>
+	<script src="/negociar/resources/modulos/boleto-cobranca/boleto-cobranca-controller.js"></script>
+	<script src="/negociar/resources/modulos/boleto-cobranca/meus-boletos-controller.js"></script>
+	<script src="/negociar/resources/modulos/alert/alert-service.js"></script>
+	<script src="/negociar/resources/modulos/duvidas-frequentes/duvidas-frequentes-controller.js"></script>
+	<script src="/negociar/resources/modulos/senha-provisoria/senhaprovisoria_service.js"></script>
+	<script src="/negociar/resources/modulos/senha-provisoria/senhaprovisoria.js"></script>
+	<script src="/negociar/resources/modulos/leilao/leilao-service.js"></script>
+	<script src="/negociar/resources/modulos/leilao/leilao-controller.js"></script>
+	<script src="/negociar/resources/modulos/indicarempresas/indicar-empresas-controller.js"></script>
+	<script src="/negociar/resources/modulos/indicarempresas/indicar-empresas-service.js"></script>
+	<script src="/negociar/resources/modulos/cadastro-cobrar/cadastro-cobrar-controller.js"></script>
+	<script src="/negociar/resources/modulos/cadastro-cobrar/cadastro-cobrar-service.js"></script>
+	<script src="/negociar/resources/modulos/negociacao-efetudas/negociacao-efetudas-controller.js"></script>
+	<script src="/negociar/resources/modulos/negociacao-efetudas/negociacao-efetudas-service.js"></script>
+	<script src="/negociar/resources/modulos/autoconsulta/autoconsulta-service.js"></script>
+	<script src="/negociar/resources/modulos/autoconsulta/autoconsulta-controller.js"></script>
+
+	<script src="/negociar/resources/js/youtube.js"></script>
+
+	<script src="/negociar/resources/js/jquery-3.2.1.js"></script>
+	<script src="/negociar/resources/js/script.js"></script>
+	<script src="/negociar/resources/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	<div id="fb-root"></div>
+
+	<script>
+		(function(i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function() {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+		ga('create', 'UA-89443153-1', 'auto');
+		ga('send', 'pageview');
+
+ 	     window.fbAsyncInit = function() {
+	    	FB.init({
+	    		appId      : '1598324840244042',
+	    		xfbml      : true,
+	    		version    : 'v2.12'
+	    	});
+
+	    	FB.AppEvents.logPageView();
+	    };
+
+		(function(d, s, id) {
+			  var js, fjs = d.getElementsByTagName(s)[0];
+			  if (d.getElementById(id)) return;
+			  js = d.createElement(s); js.id = id;
+			  js.src = "//connect.facebook.net/pt_BR/sdk.js";
+			  fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+
+
+
+	</script>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+var _analytics_scr = document.createElement('script');
+_analytics_scr.type = 'text/javascript'; _analytics_scr.async = true; _analytics_scr.src = '/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=3&cb=2067087851';
+var _analytics_elem = document.getElementsByTagName('script')[0]; _analytics_elem.parentNode.insertBefore(_analytics_scr, _analytics_elem);
+})();
+// ]]>
+</script></body></html>
